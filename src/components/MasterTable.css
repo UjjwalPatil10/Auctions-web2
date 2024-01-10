@@ -1,0 +1,10 @@
+/* masterTable.css */
+
+.MuiDataGrid-cell {
+    border-right: 1px solid #ddd; /* Border color for the right side of each cell */
+  }
+  
+  .MuiDataGrid-columnHeader{
+    border-right: 1px solid #ddd; /* Border color for the right side of each cell */
+  
+  }
