@@ -307,6 +307,72 @@
         "checkboxOption": []
       },
       "id": 15
+    },
+    {
+      "values": {
+        "auctionName": "",
+        "auctionInventory": "",
+        "viewingDate": "",
+        "viewTime": "",
+        "startDate": "",
+        "startTime": "",
+        "endDate": "",
+        "endTime": "",
+        "defaultBid": "",
+        "auctionResult": "",
+        "extendDeadlineType": "",
+        "extendDeadlineValue": "",
+        "noofBid": "",
+        "auctionMode": "",
+        "recordStatus": "",
+        "description": "",
+        "checkboxOption": []
+      },
+      "id": 16
+    },
+    {
+      "values": {
+        "auctionName": "",
+        "auctionInventory": "",
+        "viewingDate": "",
+        "viewTime": "",
+        "startDate": "",
+        "startTime": "",
+        "endDate": "",
+        "endTime": "",
+        "defaultBid": "",
+        "auctionResult": "",
+        "extendDeadlineType": "",
+        "extendDeadlineValue": "",
+        "noofBid": "",
+        "auctionMode": "",
+        "recordStatus": "",
+        "description": "",
+        "checkboxOption": []
+      },
+      "id": 17
+    },
+    {
+      "values": {
+        "auctionName": "",
+        "auctionInventory": "",
+        "viewingDate": "",
+        "viewTime": "",
+        "startDate": "",
+        "startTime": "",
+        "endDate": "",
+        "endTime": "",
+        "defaultBid": "",
+        "auctionResult": "",
+        "extendDeadlineType": "",
+        "extendDeadlineValue": "",
+        "noofBid": "",
+        "auctionMode": "",
+        "recordStatus": "",
+        "description": "",
+        "checkboxOption": []
+      },
+      "id": 18
     }
   ]
 }

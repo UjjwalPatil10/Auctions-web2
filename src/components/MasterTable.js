@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Typography } from "@mui/material";
@@ -16,19 +16,54 @@ import Modal from "react-modal";
 import "../components/MasterTable.css";
 import { useNavigate } from "react-router-dom";
 import MasterEditForm from "./MasterEditForm";
+import UserContext from "./UserContext";
+import AddEditUser from "./AddEditUser";
+import axios from "axios";
 
 
 
 // const navigate = useNavigate()
 
 export default function MasterTable() {
-    const navigate = useNavigate();
 
+  const [data,setData] = useState([])
+    const navigate = useNavigate();
+    const [openModal,setOpenModal] = useState(false);
+  const [operation, setOperation] = useState("add");
+  const [initialUser, setInitialUser] = useState({
+    auctionName: "",
+    auctionInventory: "",
+    viewingDate: "",
+    viewTime: "",
+    startDate: "",
+    startTime: "",
+    endDate: "",
+    endTime: "",
+    defaultBid: "",
+    auctionResult: "",
+    extendDeadlineType: "",
+    extendDeadlineValue: "",
+    noofBid: "",
+    auctionMode: "",
+    recordStatus: "",
+    description: "",
+    checkboxOption: [],
+  });
+    // const [modalIsOpen, setModalIsOpen] = useState(false)
+  // const [modalData, setModalData] = useState(null); 
+   
   // Add functions to handle actions (edit, delete, view)
-const handleEdit = (id) => {
+
+  const handleModalClose = () => {
+    setOpenModal(false);
+  };
+const handleEdit = (id,row) => {
   // navigate("/masterEditForm")
 
-
+  setOperation("edit");
+  // setInitialUser({ id, ...row });
+  setInitialUser(initialUser);
+  setOpenModal(true);
 
   // Implement edit logic
   // console.log(`Edit row with ID ${id}`);
@@ -192,19 +227,42 @@ const handleView = (id) => {
       headerName: "Actions",
       sortable: false,
       width: 120,
-      renderCell: (params) => (
-        <div className="">
-          <IconButton onClick={() => handleEdit(params.row.id)}>
+      renderCell: (index) => {
+        const row = filteredRows[index];
+        return (
+    <div className="">
+          <IconButton onClick={() => handleEdit(row?._id,row)}>
             <EditIcon className="text-info" />
           </IconButton>
-          <IconButton onClick={() => handleDelete(params.row.id)}>
+          <IconButton onClick={() => handleDelete(index.row.id)}>
             <DeleteIcon className="text-danger" />
           </IconButton>
-          <IconButton onClick={() => handleView(params.row.id)}>
+          <IconButton onClick={() => handleView(index.row.id)}>
             <VisibilityIcon className="text-warning" />
           </IconButton>
         </div>
-      ),
+          )
+      }
+
+
+    
+
+      // customBodyRenderLite: (index) => {
+      //   //we get row index
+      //   // return custom column ui
+      //   const user = users[index];
+      //   return (
+      //     <>
+      //       <IconButton color="primary" onClick={() => editUser(user?._id,user)}>
+      //         <EditIcon />
+      //       </IconButton>
+
+      //       <IconButton color="error" onClick={() => deleteUser(user?._id)}>
+      //         <DeleteIcon />
+      //       </IconButton>
+      //     </>
+      //   );
+      // },
     },
   ];
   
@@ -439,14 +497,59 @@ const handleView = (id) => {
     // { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
     // { id: 10, lastName: 'Smith', firstName: 'John', age: 25 },
   ];
+  const getData = async () => {
+    await axios
+      .get("http://localhost:8080/api/v1/auction/all")
+      // .get("http://localhost:4000/users")
+      .then((response) => {
+        // Add unique id to each row
+        console.log("Response:",response?.data)
+        const rowsWithId = response.data.map((row, index) => ({
+          ...row,
+          id: index + 1,
 
+        }));
+        setData(rowsWithId);
+        console.log("fetchData:", rowsWithId);
+      })
+      .catch(() => {
+        console.log(data);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   
   const emptyRows = [];
 
+ // add the user
+ const addUser = () => {
+  setOperation("add");
 
+  setInitialUser({
+    auctionName: "",
+    auctionInventory: "",
+    viewingDate: "",
+    viewTime: "",
+    startDate: "",
+    startTime: "",
+    endDate: "",
+    endTime: "",
+    defaultBid: "",
+    auctionResult: "",
+    extendDeadlineType: "",
+    extendDeadlineValue: "",
+    noofBid: "",
+    auctionMode: "",
+    recordStatus: "",
+    description: "",
+    checkboxOption: [],
+  });
+  setOpenModal(true);
+};
 
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [modalData, setModalData] = useState(null); 
+  
 
   const componentRef = useRef();
   // Add state for search filter
@@ -543,7 +646,8 @@ const handleView = (id) => {
           <div className="col-md-3 col-sm-6 d-flex justify-content-center">
             {/* <Modal> */}
      <Button variant="contained"
-            onClick={()=>navigate("/masterAddForm")}
+            // onClick={()=>navigate("/masterAddForm")}
+            onClick={addUser}
             >Add Master User</Button>
             {/* </Modal> */}
            
@@ -552,7 +656,19 @@ const handleView = (id) => {
 
           
         </div>
-
+        <UserContext.Provider
+        value={{
+          open:openModal,
+          handleModalClose,
+          filteredRows,
+          operation,
+          initialUser,
+          // loadUsers,
+          setData
+        }}
+      >
+        <AddEditUser />
+      </UserContext.Provider>
         <div className="mt-3" ref={componentRef}>
           <DataGrid
             // rows={rows}
@@ -566,11 +682,7 @@ const handleView = (id) => {
         </div>
       </Box>
 
-      <Modal isOpen={modalIsOpen} shouldCloseOnOverlayClick={true}>
-        {/* {console.log("click " + userDetails)} */}
-        <MasterEditForm data={userDetails} onClose={handleClose} />
-        <br />
-      </Modal>
+     
     </div>
   );
 }
