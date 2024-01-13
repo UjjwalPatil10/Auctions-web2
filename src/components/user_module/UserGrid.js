@@ -54,7 +54,8 @@ export const UserGrid = () => {
       };
       try {
         console.log("Fetching data...");
-        const response = await axiosInstance.get('/api/v1/user/all', options);
+        // const response = await axiosInstance.get('/api/v1/user/all', options);
+        const response = await axios.get('http://localhost:4000/users', options);
         // const response = await axios.get('http://localhost:8080/api/v1/user/all', options);
 
         const data = response.data;

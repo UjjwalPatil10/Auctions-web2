@@ -440,11 +440,10 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auction-name nameInp form-control mt-2 form-control auctionResult ${
+                        className={`auction-name nameInp form-control mt-2 form-control  ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
-                        type="text"
                         label="Auction Name"
                         name="auctionName"
                       />
@@ -457,7 +456,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`select-inp input-group mt-2 ${
+                        className={`nameInp input-group mt-2 ${
                           isFocused ? "focused" : ""
                         }`}
                         control="select"
@@ -474,7 +473,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control view-dateInp mt-2 ${
+                        className={`form-control nameInp mt-2 ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -494,7 +493,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 viewTimeInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -510,7 +509,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 startDateInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -526,7 +525,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 startTimeInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -546,7 +545,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 endDateInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -562,7 +561,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 endDateInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -587,7 +586,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 defaultIncrementInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -625,7 +624,7 @@ function MasterAddForm() {
                   <div className="col-md-4">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 endDateInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -655,12 +654,13 @@ function MasterAddForm() {
                         <div className="col">
                           <div className="checkbox">
                             <label for="checkbox1" className="form-check-label">
-                            <AuctionFormikControl
+                              <div className="check">
+                            <AuctionFormikControl 
           control="checkbox"
           name="checkboxOption"
           options={checkboxOptions}
         />
-                              
+               </div>               
                               {/* <span> Hide Bulk Bid</span> */}
                             </label>
                             {/* {formik.touched.checkbox1 &&
@@ -757,7 +757,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`select-inp input-group mt-2 ${
+                        className={`nameInp input-group mt-2 ${
                           isFocused ? "focused" : ""
                         }`}
                         control="select"
@@ -775,7 +775,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 DeadlineInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"
@@ -792,7 +792,7 @@ function MasterAddForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 BidInp ${
+                        className={`form-control mt-2 nameInp ${
                           isFocused ? "focused" : ""
                         }`}
                         control="input"

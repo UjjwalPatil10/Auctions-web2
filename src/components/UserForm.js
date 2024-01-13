@@ -15,9 +15,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { GridCloseIcon } from "@mui/x-data-grid";
 import UserContext from "./UserContext";
+import UserService from "./UserService";
 function UserForm() {
 
-    const {open,operation,  initialUser,    handleModalClose,filteredRows, loadUsers, setData } =
+    const {open,operation,  initialUser,    handleModalClose,filteredRows, getData, setData } =
     useContext(UserContext);
 //   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -361,88 +362,84 @@ function UserForm() {
     // checkbox1:Yup.array().required("Required")
   });
 
-  //   .matches(/^[0-9]+$/, "Only numbers allowed")
-  //   .required("Required"),
-  // country: Yup.string().required("Required"),
-  // email: Yup.string().email("Please, enter valid Email!").matches(EMAIL_REGX).required("Required"),
-  // email2: Yup.string()
-  //   .email("please enter valid email")
-  //   .matches(
-  //     /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-  //     "please enter valid email"
-  //   )
-  //   .required("Required"),
 
-  // const toast = useToast(false);
+  // const onSubmit = (values, submitProps) => {
+  //   // setLoading(true); // Set loading to true when the form is submitted
 
-  const onSubmit = (values, submitProps) => {
-    // setLoading(true); // Set loading to true when the form is submitted
+  //   // "http://localhost:8080/api/v1/auction"
+  //   console.log("Form Values:", values);
+  //   setData(values);
+  //   axios
+  //     // .post("http://localhost:8080/api/v1/auction", { values })
+  //     .post("http://localhost:4000/users", { values })
+  //     .then((response) => {
+  //       console.log("Response",response);
+  //       if (response.status === 204) {
+  //         console.log("success");
+  //         toast.success("Successfully Saved", {
+  //           position: toast.POSITION.TOP_CENTER,
+  //         });
+  //       }
+  //     })
 
-    // "http://localhost:8080/api/v1/auction"
-    console.log("Form Values:", values);
-    setData(values);
-    axios
-      // .post("http://localhost:8080/api/v1/auction", { values })
-      .post("http://localhost:4000/users", { values })
-      .then((response) => {
-        console.log("Response",response);
-        if (response.status === 204) {
-          console.log("success");
-          toast.success("Successfully Saved", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-        }
-      })
-
-      .catch((e) => {
-        console.log("e:", e);
-        toast.error("Something went wrong", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: true,
-        });
-      })
-      .finally(() => {
-        setLoading(false);
-        submitProps.setSubmitting(false);
-      });
-  };
+  //     .catch((e) => {
+  //       console.log("e:", e);
+  //       toast.error("Something went wrong", {
+  //         position: toast.POSITION.TOP_CENTER,
+  //         autoClose: true,
+  //       });
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //       submitProps.setSubmitting(false);
+  //     });
+  // };
 
 //     update,add users logic
 
-// const handleUser = async (user) => {
-//     console.log("Handle..", user);
-//     console.log("User ID:", initialUser);
-//     if (operation === "edit") {
-//       try {
-//         const response = await UserService.updateUser(initialUser?._id, user);
-//         // Note: Use initialUser?._id instead of undefined userId
-//         console.log("Res:", response?.data);
-//         handleDialogClose();
-//         setUsers((prevUsers) => {
-//           const updatedUsers = prevUsers.map((u) =>
-//             u._id === initialUser._id ? { ...u, ...user } : u
-//           );
-//           return updatedUsers;
-//         });
-//         alert("User Updated...");
-//       } catch (err) {
-//         console.error(err);
-//         alert("User not Updated");
-//       }
-//     } else {
-//       // Existing code for creating a new user
-//       UserService.createUser(user)
-//         .then((response) => {
-//           handleDialogClose();
-//           loadUsers();
-//           alert("User Created Successfully");
-//         })
-//         .catch((err) => {
-//           console.error(err);
-//           alert("User not created...");
-//         });
-//     }
-//   };
+const handleUser = async (user) => {
+    console.log("Handle..", user);
+    console.log("User ID:", initialUser);
+    if (operation === "edit") 
+    
+    {
+      try {
+        const response = await UserService.updateUser(initialUser?._id, user);
+        // Note: Use initialUser?._id instead of undefined userId
+        console.log("Res:", response?.data);
+        handleModalClose();
+        setData((prevUsers) => {
+          const updatedUsers = prevUsers.map((u) =>
+            u._id === initialUser._id ? { ...u, ...user } : u
+          );
+          return updatedUsers;
+        });
+        alert("User Updated...");
+      } catch (err) {
+        console.error(err);
+        alert("User not Updated");
+      }
+    }  
+    else {
+      // Existing code for creating a new user
+
+
+
+      
+      UserService.createUser(user)
+     
+    //  await  axios.post("http://localhost:4000/auctions",user)
+        .then((response) => {
+          handleModalClose();
+          getData();
+          alert("User Created Successfully");
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("User not created...");
+        });
+    }
+  };
 
 
 
@@ -455,7 +452,8 @@ function UserForm() {
       <Formik
         initialValues={initialUser}
         // validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        // onSubmit={onSubmit}
+        onSubmit={(data)=>handleUser(data)}
       >
         {(formik) => {
           return (
@@ -869,5 +867,4 @@ function UserForm() {
     </>
   );
 }
-
 export default UserForm;

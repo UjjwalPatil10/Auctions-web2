@@ -57,12 +57,12 @@ export default function MasterTable() {
   const handleModalClose = () => {
     setOpenModal(false);
   };
-const handleEdit = (id,row) => {
+const handleEdit = (id,auctiondata) => {
   // navigate("/masterEditForm")
 
   setOperation("edit");
-  // setInitialUser({ id, ...row });
-  setInitialUser(initialUser);
+  setInitialUser({ id, ...auctiondata });
+//   setInitialUser(initialUser);
   setOpenModal(true);
 
   // Implement edit logic
@@ -228,10 +228,10 @@ const handleView = (id) => {
       sortable: false,
       width: 120,
       renderCell: (index) => {
-        const row = filteredRows[index];
+        const auctionData = data[index];
         return (
     <div className="">
-          <IconButton onClick={() => handleEdit(row?._id,row)}>
+          <IconButton onClick={() => handleEdit(auctionData?._id,auctionData)}>
             <EditIcon className="text-info" />
           </IconButton>
           <IconButton onClick={() => handleDelete(index.row.id)}>
@@ -499,8 +499,8 @@ const handleView = (id) => {
   ];
   const getData = async () => {
     await axios
-      .get("http://localhost:8080/api/v1/auction/all")
-      // .get("http://localhost:4000/users")
+    //   .get("http://localhost:8080/api/v1/auction/all")
+      .get("http://localhost:4000/auctions")
       .then((response) => {
         // Add unique id to each row
         console.log("Response:",response?.data)
@@ -543,6 +543,9 @@ const handleView = (id) => {
     noofBid: "",
     auctionMode: "",
     recordStatus: "",
+    bulkbid:"",
+    proxybid:"",
+    popcornbid:"",
     description: "",
     checkboxOption: [],
   });
@@ -663,7 +666,7 @@ const handleView = (id) => {
           filteredRows,
           operation,
           initialUser,
-          // loadUsers,
+          getData,
           setData
         }}
       >
@@ -672,7 +675,8 @@ const handleView = (id) => {
         <div className="mt-3" ref={componentRef}>
           <DataGrid
             // rows={rows}
-            rows={filteredRows}
+            rows={data}
+            getRowId={(row) => row.id}
             columns={columns}
             autoHeight // Set autoHeight to true to remove scrollbars
             pageSize={10}

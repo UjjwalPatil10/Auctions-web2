@@ -1,4 +1,4 @@
-label {
+/* label {
     font-weight: bold;
     display: flex;
     margin-bottom: 5px;
@@ -27,5 +27,11 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 20px;
+}
+ */
+ .modal-dialog.show {
+  max-width: 100% !important;
+  padding-top: 0px;
+  margin-top: 0px;
 }
 

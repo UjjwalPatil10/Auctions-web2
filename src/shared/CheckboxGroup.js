@@ -5,7 +5,7 @@ import AuctionTextError from './AuctionTextError'
 function CheckboxGroup(props) {
     const { label, name, options, ...rest } = props
   return (
-    <div className='d-flex'>
+    <div className=''>
     <label>{label}</label>
     <Field name={name} >
       {({ field }) => {

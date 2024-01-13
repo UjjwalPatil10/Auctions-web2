@@ -1,19 +1,26 @@
 {
-  "posts": [
+  "auctions": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "auctionName": "shiv",
+      "auctionInventory": "ss",
+      "viewingDate": "12",
+      "viewTime": "12",
+      "startDate": "12",
+      "startTime": "1",
+      "endDate": "1",
+      "endTime": "1pm",
+      "defaultBid": "5",
+      "auctionResult": "pass",
+      "extendDeadlineType": "allow",
+      "extendDeadlineValue": "87589",
+      "noofBids": "22",
+      "auctionMode": "offline",
+      "recordStatus": "we",
+      "description": "ttettt",
+                  
+      "checkboxOption": []
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+
+  
+  ]
 }
