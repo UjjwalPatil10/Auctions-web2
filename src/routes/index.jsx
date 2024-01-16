@@ -10,6 +10,10 @@ import MasterEditForm from "../components/MasterEditForm";
 import MasterTable from "../components/MasterTable";
 import MasterAddForm from "../components/MasterAddForm";
 import FormEditModal from "../components/user_module/FormEditModal";
+import Header from "../components/Header"
+import MasterModalForm from "../components/Modal/MasterModalForm";
+import Details from "../components/Modal/Details";
+import StockFile from "../components/Modal/StockFile";
 // import MasterEditForm from "../components/auction-module/MasterEditForm";
 
 const Routes = () => {
@@ -53,7 +57,23 @@ const Routes = () => {
         {
             path: "/home",
             element: <Home/>,
-        },
+        }
+        // {
+        //     path: "/header",
+        //     element: <Header/>,
+        // }
+        // {
+        //     path: "/masterModalForm",
+        //     element: <MasterModalForm/>,
+        // },
+        // {
+        //     path: "/details",
+        //     element: <Details/>,
+        // },
+        // {
+        //     path: "/stockfile",
+        //     element: <StockFile/>,
+        // },
    
 
     ];

@@ -6,7 +6,10 @@ class UserService {
     return APIS.post(endpoints?.api?.auctions?.create, user)
   }
   static updateUser(id, user) {
-    return APIS.put(endpoints?.api?.auctions?.update + id, user);
+    const url = endpoints?.api?.auctions?.update + id;
+    console.log('Update URL:', url);
+    return APIS.put(url, user);
+    // return APIS.put(endpoints?.api?.auctions?.update + id, user);
   }
   static deleteUser( id) {
     return APIS.delete(endpoints?.api?.auctions?.delete + id);

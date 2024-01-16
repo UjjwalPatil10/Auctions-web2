@@ -1,26 +1,30 @@
 {
   "auctions": [
     {
-      "auctionName": "shiv",
-      "auctionInventory": "ss",
-      "viewingDate": "12",
-      "viewTime": "12",
-      "startDate": "12",
-      "startTime": "1",
-      "endDate": "1",
-      "endTime": "1pm",
-      "defaultBid": "5",
-      "auctionResult": "pass",
-      "extendDeadlineType": "allow",
-      "extendDeadlineValue": "87589",
-      "noofBids": "22",
+      "auctionName": "s",
+      "auctionInventory": "certificate",
+      "viewingDate": "2",
+      "viewTime": "3",
+      "startDate": "2",
+      "startTime": "4",
+      "endDate": "5",
+      "endTime": "4",
+      "defaultBid": "7",
+      "auctionResult": "4",
+      "extendDeadlineType": "minutes",
+      "extendDeadlineValue": "4",
+      "noofBid": "",
       "auctionMode": "offline",
-      "recordStatus": "we",
-      "description": "ttettt",
-                  
-      "checkboxOption": []
+      "recordStatus": "#3",
+      "bulkbid": "",
+      "proxybid": "",
+      "popcornbid": "",
+      "description": "dgdggggfggff",
+      "checkboxOption": [
+        "hide"
+      ],
+      "noofBids": "5",
+      "id": 1
     }
-
-  
   ]
 }

@@ -202,7 +202,7 @@
     }
     .select-inp {
       width: 320px;
-      height: 36px;
+      height: 42px;
       border: 1px solid #dee2e6;
       border-radius: 4px;
     }
@@ -278,7 +278,7 @@
   
     .auction-mode {
       width: 88px;
-      height: 30px;
+      height: 42px;
       border: 1px solid #dee2e6;
       border-radius: 4px;
     }
@@ -779,4 +779,9 @@
     border-bottom: 3px solid !important;
     height: 45px !important;
   }
-  
+  @media (min-width: 1200px){
+.modal-xl {
+    --bs-modal-width: 1177px !important;
+    /* background: red; */
+}
+  }

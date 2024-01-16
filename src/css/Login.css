@@ -77,11 +77,11 @@ input[type="submit"]:hover {
   height: 50px;
 }
 
-.logo{
+/* .logo{
   width: 666px;
   height: 90px;
   background-color: red;
-}
+} */
 
 .adjust{
   /* height: 345px; ; */
@@ -100,6 +100,13 @@ width: 100%;
 }
 
 @media (min-width: 300px) and (max-width: 499.98px) {
+
+  /* .logo{
+  width: 666px;
+  height: 90px;
+  background-color: red;
+} */
+
   .logo{
     width: 430px;
     background-color: cyan;
@@ -118,5 +125,18 @@ width: 100%;
   }
 }
 @media (min-width: 1200px) and (max-width: 1399.98px) {
-
+  .logo{
+    width: 666px;
+    height: 90px;
+    /* background-color: red; */
+  }
 }
+
+@media (min-width: 1400px) and (max-width: 1500px) {
+  .logo{
+    width: 666px;
+    height: 90px;
+    /* background-color: red; */
+  }
+}
+

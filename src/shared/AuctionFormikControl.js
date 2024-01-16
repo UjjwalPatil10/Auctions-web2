@@ -6,6 +6,8 @@ import AuctionRadioButtons from './AuctionRadioButtons'
 import AuctionSelect from './AuctionSelect'
 import CheckboxGroup from './CheckboxGroup'
 import TextArea from './TextArea'
+import DatePickerField from './DatePickerField'
+import TimePickerField from './TimePickerField'
 
 function AuctionFormikControl(props) {
     const { control, ...rest } = props
@@ -30,6 +32,11 @@ function AuctionFormikControl(props) {
           
           case 'textarea':
           return <TextArea {...rest} />
+          case 'datepicker':
+            return <DatePickerField {...rest} />;
+
+        case 'timepicker':
+             return <TimePickerField {...rest} />
           
       default:
         return null
