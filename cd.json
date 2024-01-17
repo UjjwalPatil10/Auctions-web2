@@ -1,30 +1,85 @@
 {
   "auctions": [
     {
-      "auctionName": "s",
+      "id": 1,
+      "auctionName": "shivaaa",
       "auctionInventory": "certificate",
-      "viewingDate": "2",
+      "viewingDate": "3",
       "viewTime": "3",
-      "startDate": "2",
-      "startTime": "4",
-      "endDate": "5",
+      "startDate": "3",
+      "startTime": "3",
+      "endDate": "3",
       "endTime": "4",
-      "defaultBid": "7",
-      "auctionResult": "4",
+      "defaultBid": "5",
+      "auctionResult": "3",
       "extendDeadlineType": "minutes",
-      "extendDeadlineValue": "4",
+      "extendDeadlineValue": "2",
       "noofBid": "",
       "auctionMode": "offline",
       "recordStatus": "#3",
-      "bulkbid": "",
-      "proxybid": "",
-      "popcornbid": "",
-      "description": "dgdggggfggff",
+      "bulkbid": "yes",
+      "proxybid": "no",
+      "popcornbid": "yes",
+      "description": "yuptt",
       "checkboxOption": [
-        "hide"
+        "bulkbid",
+        "popcornbid"
       ],
-      "noofBids": "5",
-      "id": 1
+      "noofBids": "22"
+    },
+    {
+      "id": 2,
+      "auctionName": "ss",
+      "auctionInventory": "certificate",
+      "viewingDate": "2024-01-16T18:30:00.000Z",
+      "viewTime": "5",
+      "startDate": "8",
+      "startTime": "9",
+      "endDate": "3",
+      "endTime": "4",
+      "defaultBid": "7",
+      "auctionResult": "3",
+      "extendDeadlineType": "minutes",
+      "extendDeadlineValue": "3",
+      "noofBid": "",
+      "auctionMode": "online",
+      "recordStatus": "#2",
+      "bulkbid": "yes",
+      "proxybid": "yes",
+      "popcornbid": "yes",
+      "description": "fgdfgg",
+      "checkboxOption": [
+        "bulkbid",
+        "popcornbid",
+        "proxybid"
+      ],
+      "noofBids": "5"
+    },
+    {
+      "auctionName": "s",
+      "auctionInventory": "certificate",
+      "viewingDate": "2",
+      "viewTime": "4",
+      "startDate": "6",
+      "startTime": "8",
+      "endDate": "9",
+      "endTime": "9",
+      "defaultBid": "7",
+      "auctionResult": "4",
+      "extendDeadlineType": "minutes",
+      "extendDeadlineValue": "3",
+      "noofBid": "",
+      "auctionMode": "offline",
+      "recordStatus": "#3",
+      "bulkbid": "yes",
+      "proxybid": "no",
+      "popcornbid": "no",
+      "description": "fhfhhh",
+      "checkboxOption": [
+        "bulkbid"
+      ],
+      "noofBids": "6",
+      "id": 3
     }
   ]
 }

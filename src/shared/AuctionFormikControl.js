@@ -32,10 +32,10 @@ function AuctionFormikControl(props) {
           
           case 'textarea':
           return <TextArea {...rest} />
-          case 'datepicker':
+          case 'date':
             return <DatePickerField {...rest} />;
 
-        case 'timepicker':
+        case 'time':
              return <TimePickerField {...rest} />
           
       default:

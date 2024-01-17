@@ -26,3 +26,40 @@ const DatePickerField = ({ label, ...props }) => {
 };
 
 export default DatePickerField;
+
+// ===================================================================================
+
+// import React from "react";
+// import DateView from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+// import { ErrorMessage, Field } from "formik";
+// import TextError from "./AuctionTextError";
+
+// const DatePickerField = (props) => {
+//   const { label, name, ...rest } = props;
+
+//   return (
+//     <div className="">
+//       <label htmlFor={name}>{label}</label>
+//       <Field name={name}>
+//         {({ field, form }) => {
+//           const { setFieldValue, value } = field;
+//           return (
+//             <DateView
+//               id={name}
+//               {...rest}
+//               selected={value}
+//               onChange={(val) => {
+//                 setFieldValue(name, val); // Ensure setFieldValue is called with the correct arguments
+//                 form.setFieldValue(name, val); // Additionally, try using form.setFieldValue
+//               }}
+//             />
+//           );
+//         }}
+//       </Field>
+//       <ErrorMessage name={name} component={TextError} />
+//     </div>
+//   );
+// };
+
+// export default DatePickerField;

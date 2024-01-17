@@ -12,12 +12,14 @@ function TimePickerField({ name, label }) {
   return (
     <div>
       <label htmlFor={name}>{label}</label>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div className='bg-info time'>
+      <LocalizationProvider dateAdapter={AdapterDayjs} >
         <TimePicker
           value={value}
           onChange={(newValue) => setValue(newValue)}
         />
       </LocalizationProvider>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-// react-modal
+
 
 import React, { useContext } from "react";
 import { Formik, Form, useFormik } from "formik";
@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import AuctionFormikControl from "../shared/AuctionFormikControl";
 import axios from "axios";
 import Modal from "react-modal";
-import "../components/masterAddForm.css";
+// import "../components/masterAddForm.css";
 import { useState } from "react";
 import AuctionLoadAnimation from "../shared/AuctionLoadAnimation";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,11 +15,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { GridCloseIcon } from "@mui/x-data-grid";
 import UserContext from "./UserContext";
+import UserService from "./UserService";
 function UserForm() {
 
-    const {open,operation,  initialUser,    handleModalClose,filteredRows, loadUsers, setData } =
+  const { open, operation, initialUser, handleClose, filteredRows, getData, setData } =
     useContext(UserContext);
-//   const [data, setData] = useState({});
+  //   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -275,11 +276,11 @@ function UserForm() {
   ];
 
   const checkboxOptions = [
-    { key: "Hide Bulk Bid", value: "hide" },
-    { key: " Allow Proxy Bid", value: "allow" },
-    { key: "Allow PopCorn Bid", value: "popcorn" },
+    { key: "bulkbids", value: "bulkbid" },
+    { key: "proxybids", value: "proxybid" },
+    { key: "popcornbids", value: "popcornbid" },
 
-   
+
   ];
 
 
@@ -291,7 +292,7 @@ function UserForm() {
   //   { key: " Allow Proxy Bid", value: "allow" },
   // ];
   // const checkboxOptions3 = [
-  
+
   //   { key: "Allow PopCorn Bid", value: "popcorn" },
   // ];
 
@@ -307,28 +308,28 @@ function UserForm() {
     { key: "Option #3", value: "#3" },
   ];
 
-//   const initialValues = {
-//     auctionName: "",
-//     auctionInventory: "",
-//     viewingDate: "",
-//     viewTime: "",
-//     startDate: "",
-//     startTime: "",
-//     endDate: "",
-//     endTime: "",
-//     defaultBid: "",
-//     auctionResult: "",
-//     extendDeadlineType: "",
-//     extendDeadlineValue: "",
-//     noofBid: "",
-//     auctionMode: "",
-//     recordStatus: "",
-//     description: "",
-//     checkboxOption: [],
-//     // bulkbid: "",
-//     // proxybid: "",
-//     // popcornbid: "",
-//   };
+  //   const initialValues = {
+  //     auctionName: "",
+  //     auctionInventory: "",
+  //     viewingDate: "",
+  //     viewTime: "",
+  //     startDate: "",
+  //     startTime: "",
+  //     endDate: "",
+  //     endTime: "",
+  //     defaultBid: "",
+  //     auctionResult: "",
+  //     extendDeadlineType: "",
+  //     extendDeadlineValue: "",
+  //     noofBid: "",
+  //     auctionMode: "",
+  //     recordStatus: "",
+  //     description: "",
+  //     checkboxOption: [],
+  //     // bulkbid: "",
+  //     // proxybid: "",
+  //     // popcornbid: "",
+  //   };
 
   const validationSchema = Yup.object({
     // userId: Yup.string().required("Required"),
@@ -350,7 +351,7 @@ function UserForm() {
 
     extendDeadlineType: Yup.string().required("Required"),
     extendDeadlineValue: Yup.string().required("Required"),
-    noofBid: Yup.string().required("Required"),
+    noofBids: Yup.string().required("Required"),
     auctionMode: Yup.string().required("Required"),
     recordStatus: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
@@ -361,66 +362,55 @@ function UserForm() {
     // checkbox1:Yup.array().required("Required")
   });
 
-  //   .matches(/^[0-9]+$/, "Only numbers allowed")
-  //   .required("Required"),
-  // country: Yup.string().required("Required"),
-  // email: Yup.string().email("Please, enter valid Email!").matches(EMAIL_REGX).required("Required"),
-  // email2: Yup.string()
-  //   .email("please enter valid email")
-  //   .matches(
-  //     /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-  //     "please enter valid email"
-  //   )
-  //   .required("Required"),
 
-  // const toast = useToast(false);
+  // const onSubmit = (values, submitProps) => {
+  //   // setLoading(true); // Set loading to true when the form is submitted
 
-  const onSubmit = (values, submitProps) => {
-    // setLoading(true); // Set loading to true when the form is submitted
+  //   // "http://localhost:8080/api/v1/auction"
+  //   console.log("Form Values:", values);
+  //   setData(values);
+  //   axios
+  //     // .post("http://localhost:8080/api/v1/auction", { values })
+  //     .post("http://localhost:4000/users", { values })
+  //     .then((response) => {
+  //       console.log("Response",response);
+  //       if (response.status === 204) {
+  //         console.log("success");
+  //         toast.success("Successfully Saved", {
+  //           position: toast.POSITION.TOP_CENTER,
+  //         });
+  //       }
+  //     })
 
-    // "http://localhost:8080/api/v1/auction"
-    console.log("Form Values:", values);
-    setData(values);
-    axios
-      // .post("http://localhost:8080/api/v1/auction", { values })
-      .post("http://localhost:4000/users", { values })
-      .then((response) => {
-        console.log("Response",response);
-        if (response.status === 204) {
-          console.log("success");
-          toast.success("Successfully Saved", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-        }
-      })
+  //     .catch((e) => {
+  //       console.log("e:", e);
+  //       toast.error("Something went wrong", {
+  //         position: toast.POSITION.TOP_CENTER,
+  //         autoClose: true,
+  //       });
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //       submitProps.setSubmitting(false);
+  //     });
+  // };
 
-      .catch((e) => {
-        console.log("e:", e);
-        toast.error("Something went wrong", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: true,
-        });
-      })
-      .finally(() => {
-        setLoading(false);
-        submitProps.setSubmitting(false);
-      });
-  };
+  //     update,add users logic
 
-//     update,add users logic
-
-// const handleUser = async (user) => {
+//   const handleUser = async (user) => {
 //     console.log("Handle..", user);
 //     console.log("User ID:", initialUser);
 //     if (operation === "edit") {
-//       try {
-//         const response = await UserService.updateUser(initialUser?._id, user);
+//     try {
+//         const userId = initialUser?.id
+//         const response = await axios.put(`http://localhost:4000/auctions/${userId}`,user);
+//         // const response = await UserService.updateUser(initialUser?.id, user);
 //         // Note: Use initialUser?._id instead of undefined userId
 //         console.log("Res:", response?.data);
-//         handleDialogClose();
-//         setUsers((prevUsers) => {
+//         handleClose();
+//         setData((prevUsers) => {
 //           const updatedUsers = prevUsers.map((u) =>
-//             u._id === initialUser._id ? { ...u, ...user } : u
+//             u.id === initialUser.id ? { ...u, ...user } : u
 //           );
 //           return updatedUsers;
 //         });
@@ -429,13 +419,29 @@ function UserForm() {
 //         console.error(err);
 //         alert("User not Updated");
 //       }
-//     } else {
+//     }
+//     else {
 //       // Existing code for creating a new user
-//       UserService.createUser(user)
+// const formatedValues = {
+//   ...user,
+//   bulkbid:user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+//   proxybid:user.checkboxOption.includes("proxybid") ? "yes" : "no",
+//   popcornbid:user.checkboxOption.includes("popcornbid") ? "yes" : "no"
+// }
+// console.log("values:",formatedValues)
+
+// setData(formatedValues)
+
+//       // UserService.createUser(formatedValues)
+
+//          await  axios.post("http://localhost:4000/auctions",formatedValues)
 //         .then((response) => {
-//           handleDialogClose();
-//           loadUsers();
-//           alert("User Created Successfully");
+//           handleClose();
+//           console.log("datas:",response?.data)
+//           setData((prevData) => [...prevData, response?.data]);
+//           getData();
+//         //   alert("User Created Successfully");
+//         toast.success("User Created Successfully")
 //         })
 //         .catch((err) => {
 //           console.error(err);
@@ -443,6 +449,106 @@ function UserForm() {
 //         });
 //     }
 //   };
+
+const handleUser = async (user) => {
+  console.log("Handle..", user);
+  console.log("User ID:", initialUser);
+
+  try {
+    if (operation === "edit") {
+      const userId = initialUser?.id;
+      const updatedUser = {
+        ...user,
+        bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+        proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
+        popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
+      };
+      const response = await axios.put(`http://localhost:4000/auctions/${userId}`, updatedUser);
+      console.log("updatedUser:",response?.data)
+      // console.log("Res:", response?.data);
+      handleClose();
+
+      // Assuming your UI is connected to the setData function, update it accordingly
+      setData(response?.data)
+      // setData((prevUsers) => {
+      //   const updatedUsers = prevUsers.map((u) =>
+      //     u.id === initialUser.id ? { ...u, ...user } : u
+      //   );
+      //   return updatedUsers;
+      // });
+
+      alert("User Updated...");
+    } else {
+      // Existing code for creating a new user
+      const formatedValues = {
+        ...user,
+        bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+        proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
+        popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
+      };
+      console.log("values:", formatedValues);
+
+      const response = await axios.post("http://localhost:4000/auctions", formatedValues);
+      handleClose();
+
+      // Assuming your UI is connected to the setData function, update it accordingly
+      setData((prevData) => [...prevData, response.data]);
+
+      toast.success("User Created Successfully");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Error occurred while handling the user.");
+  }
+};
+
+
+
+
+
+// const handleUser = async (user) => {
+//   console.log("Handle..", user);
+//   console.log("User ID:", initialUser);
+
+//   try {
+//     if (operation === "edit") {
+//       const userId = initialUser?.id;
+//       const response = await axios.put(`http://localhost:4000/auctions/${userId}`, user);
+//       console.log("Res:", response?.data);
+//       handleClose();
+
+//       // Assuming your UI is connected to the setData function, update it accordingly
+//       setData((prevUsers) => {
+//         const updatedUsers = prevUsers.map((u) =>
+//           u.id === initialUser.id ? { ...u, ...user } : u
+//         );
+//         return updatedUsers;
+//       });
+
+//       alert("User Updated...");
+//     } else {
+//       // Existing code for creating a new user
+//       const formatedValues = {
+//         ...user,
+//         bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+//         proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
+//         popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
+//       };
+//       console.log("values:", formatedValues);
+
+//       const response = await axios.post("http://localhost:4000/auctions", formatedValues);
+//       handleClose();
+      
+//       // Assuming your UI is connected to the setData function, update it accordingly
+//       setData((prevData) => [...prevData, response.data]);
+
+//       toast.success("User Created Successfully");
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     alert("Error occurred while handling the user.");
+//   }
+// };
 
 
 
@@ -455,55 +561,38 @@ function UserForm() {
       <Formik
         initialValues={initialUser}
         // validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        // onSubmit={onSubmit}
+        onSubmit={(data) => handleUser(data)}
       >
         {(formik) => {
           return (
             <div className="container-fluid mt-2 ">
-             
+
               <Form className="popAdjust" autoComplete="off">
-                <div className="d-flex justify-content-end  p-2">
-              <button
-                    className="btn btn-outline-primary"
-                    disabled={formik.isSubmitting}
-                    // onClick={()=>navigate("/masterTableForm")}
-                    onClick={handleModalClose}
-                  >
-                    {/*loading ? <>Loading..</> : <></>*/}
-                    <GridCloseIcon/>
-                  </button>
-                  </div>
-                {/* <div className="border border-3 border-primary h-90"></div>
-                <h2 className="ml-10 fw-bold mb-2">User Registration</h2>
-                <br></br>
-                <p className="fw-bold mb-5 text-danger text-decoration-underline">
-                  GENERAL INFO.
-                </p> */}
+            
                 {/* 1st row  */}
                 <div className="row mt-2 auctionName">
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auction-name nameInp form-control mt-2 form-control auctionResult ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`auction-name nameInp form-control mt-2 form-control auctionResult ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="Auction Name"
                         name="auctionName"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
 
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`select-inp input-group mt-2 ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`select-inp input-group mt-2 ${isFocused ? "focused" : ""
+                          }`}
                         control="select"
                         type="text"
                         label="Auction Inventory"
@@ -511,24 +600,23 @@ function UserForm() {
                         options={selectOptions}
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control view-dateInp mt-2 ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control view-dateInp mt-2 ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="viewing date"
                         name="viewingDate"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                 </div>
@@ -538,49 +626,46 @@ function UserForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 viewTimeInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 viewTimeInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="Viewing Time"
                         name="viewTime"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 startDateInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 startDateInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="Start Date"
                         name="startDate"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 startTimeInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 startTimeInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="Start Time"
                         name="startTime"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                 </div>
@@ -590,58 +675,46 @@ function UserForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 endDateInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 endDateInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="End Date"
                         name="endDate"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 endDateInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 endDateInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="End Time"
                         name="endTime"
                       />
 
-                      {/* <AuctionFormikControl
-                  className={`form-control mt-2 endTimeInp ${isFocused ? 'focused' : ''}`}
-                    control="input"
-                    type="text"
-                    label="End Time"
-                    name="city1"
-                  /> */}
-                      {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                 
                     </div>
                   </div>
 
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 defaultIncrementInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 defaultIncrementInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="Default Bid Increment By"
                         name="defaultBid"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                 </div>
@@ -650,10 +723,10 @@ function UserForm() {
                 {/* 4th row  */}
                 <div className="row mt-4 auctionName">
                   {/* <div className="col-md-4">
-                                <div className="form-group auction-result">
-                                    <label for="aucresdate" className="form-control-label">Auction Result Date</label>
-                                </div>
-                            </div> */}
+                                    <div className="form-group auction-result">
+                                        <label for="aucresdate" className="form-control-label">Auction Result Date</label>
+                                    </div>
+                                </div> */}
 
                   <div className="col-md-4">
                     <div className="form-group "></div>
@@ -663,67 +736,66 @@ function UserForm() {
                   </div>
                 </div>
 
-                
+
                 {/* input field  */}
                 <div className="row mt-2 auctionName">
                   <div className="col-md-4">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 endDateInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 endDateInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="Auction Result Date"
                         name="auctionResult"
                       />
                       {/* <input
-                    type="text"
-                    id="aucresdate"
-                    className={`form-control auctionResult ${isFocused ? 'focused' : ''}`}
-                    onFocus={handleFocus}
-                    // onBlur={handleBlur}
-                    required
-                    style={{ border: "1px solid #ccc" }}
-                /> */}
+                        type="text"
+                        id="aucresdate"
+                        className={`form-control auctionResult ${isFocused ? 'focused' : ''}`}
+                        onFocus={handleFocus}
+                        // onBlur={handleBlur}
+                        required
+                        style={{ border: "1px solid #ccc" }}
+                    /> */}
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
 
                   <div className="col-md-8 mt-4">
                     <div className="form-group">
                       <div className="row">
-                  
+
                         <div className="col">
                           <div className="checkbox">
                             <label for="checkbox1" className="form-check-label">
-                            <AuctionFormikControl
-          control="checkbox"
-          name="checkboxOption"
-          options={checkboxOptions}
-        />
-                              
+                              <AuctionFormikControl
+                                control="checkbox"
+                                name="checkboxOption"
+                                options={checkboxOptions}
+                              />
+
                               {/* <span> Hide Bulk Bid</span> */}
                             </label>
                             {/* {formik.touched.checkbox1 &&
-                              formik.errors.checkbox1 && (
-                                <small
-                                  style={{ color: "red", fontSize: "12px" }}
-                                >
-                                  {formik.errors.checkbox1}
-                                </small>
-                              )} */}
+                                  formik.errors.checkbox1 && (
+                                    <small
+                                      style={{ color: "red", fontSize: "12px" }}
+                                    >
+                                      {formik.errors.checkbox1}
+                                    </small>
+                                  )} */}
                           </div>
                         </div>
-                       
-                 
+
+
                       </div>
                     </div>
                   </div>
                 </div>
-  
+
                 <br />
 
                 {/* 5th row  */}
@@ -731,9 +803,8 @@ function UserForm() {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`select-inp input-group mt-2 ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`select-inp input-group mt-2 ${isFocused ? "focused" : ""
+                          }`}
                         control="select"
                         type="text"
                         label="Extend Deadline within Type"
@@ -741,42 +812,40 @@ function UserForm() {
                         options={extendOptions}
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
 
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 DeadlineInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 DeadlineInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="Extend Deadline within Value"
                         name="extendDeadlineValue"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
 
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-2 BidInp ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-2 BidInp ${isFocused ? "focused" : ""
+                          }`}
                         control="input"
                         type="text"
                         label="No of Times Bid Extend"
-                        name="noofBid"
+                        name="noofBids"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                 </div>
@@ -787,9 +856,8 @@ function UserForm() {
                   <div className="col-md-2">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`mt-3 auction-mode ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`mt-3 auction-mode ${isFocused ? "focused" : ""
+                          }`}
                         control="select"
                         type="text"
                         label="Auction Mode"
@@ -797,16 +865,15 @@ function UserForm() {
                         options={viewsOptions}
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                   <div className="col-md-2">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`mt-3 auction-mode ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`mt-3 auction-mode ${isFocused ? "focused" : ""
+                          }`}
                         control="select"
                         type="text"
                         label="Record Status"
@@ -814,24 +881,23 @@ function UserForm() {
                         options={activeOptions}
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                   <div className="col-md-8 ">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`form-control mt-3 des ${
-                          isFocused ? "focused" : ""
-                        }`}
+                        className={`form-control mt-3 des ${isFocused ? "focused" : ""
+                          }`}
                         control="textarea"
                         type="text"
                         label="Description"
                         name="description"
                       />
                       {/* {isFocused && (
-                    <small style={{ color: "red",fontSize:"px" }}>Required</small>
-                )} */}
+                        <small style={{ color: "red",fontSize:"px" }}>Required</small>
+                    )} */}
                     </div>
                   </div>
                 </div>
@@ -842,32 +908,32 @@ function UserForm() {
 
                   <div className="col-md-2 d-flex justify-content-between">
 
-                  <button
-                    type="submit"
-                    className="btn btn-outline-primary"
-                    disabled={formik.isSubmitting}
-                  >
-                    {/*loading ? <>Loading..</> : <></>*/}
-                    {operation === "edit" ? "Update" : "Creates"}
+                    <button
+                      type="submit"
+                      className="btn btn-outline-primary"
+                      disabled={formik.isSubmitting}
+                    >
+                      {/*loading ? <>Loading..</> : <></>*/}
+                      {operation === "edit" ? "Update" : "Creates"}
 
-                  </button>
+                    </button>
 
-               
+
 
                   </div>
-              
+
                 </div>
               </Form>
             </div>
+            
           );
         }}
       </Formik>
 
       <div>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
       </div>
     </>
   );
 }
-
 export default UserForm;
