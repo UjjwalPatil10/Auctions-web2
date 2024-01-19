@@ -2,13 +2,17 @@ import React from 'react';
 import { useField } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import dayjs from 'dayjs';
 
 const DatePickerField = ({ label, ...props }) => {
   const [field, meta, helpers] = useField(props.name);
 
   const handleChange = (date) => {
-    helpers.setValue(date);
+    // Format the date using dayjs to "YYYY-MM-DD"
+    const formattedDate = dayjs(date).format('YYYY-MM-DD');
+    helpers.setValue(formattedDate);
   };
+  console.log("date:" ,typeof(field.value))
 
   return (
     <div>
@@ -16,7 +20,7 @@ const DatePickerField = ({ label, ...props }) => {
       <DatePicker
         {...field}
         {...props}
-        selected={field.value}
+        selected={field.value ? new Date(field.value) : null}
         onChange={handleChange}
         dateFormat="dd/MM/yyyy"
       />

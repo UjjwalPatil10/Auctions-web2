@@ -29,9 +29,10 @@ select {
   margin-bottom: 20px;
 }
  */
- .modal-dialog.show {
+ /* .modal-dialog.show .modal-xl .modal-lg {
+  background-color: orange !important;
   max-width: 100% !important;
   padding-top: 0px;
   margin-top: 0px;
-}
+} */
 

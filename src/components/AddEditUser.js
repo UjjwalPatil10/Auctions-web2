@@ -56,7 +56,8 @@ const AddEditUser = () => {
       show={show}
       onHide={handleClose}
       className="modal-dialog modal-lg modal-sm modal-md  modal-xl"
-      style={{ position: "fixed", top: 0, right: 0, bottom: 0, left: 0 }}
+      dialogClassName="my-modal"
+      style={{ position: "fixed", top: 0, right: 0, bottom: 0, left: 0,maxHeight: "100vh", overflowY: "auto",maxWidth:"100vw"}}
     >
       <Modal.Header closeButton>
         <Modal.Title>
@@ -64,7 +65,7 @@ const AddEditUser = () => {
 
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body >
         <UserForm />
         {/* <div className="yup">
           <NavLink to="/masterModalForm"
@@ -95,7 +96,6 @@ const AddEditUser = () => {
 
       {/* <Modal.Footer></Modal.Footer> */}
     </Modal>
-
   );
 };
 

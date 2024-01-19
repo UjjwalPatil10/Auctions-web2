@@ -1,0 +1,331 @@
+
+
+/* @media (min-width: 576px){
+.modal-dialog {
+    max-width: var(--bs-modal-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+} */
+/* .modal-dialog.show .modal-xl .modal-lg {
+  background-color: orange !important;
+  max-width: 100% !important;
+  padding-top: 0px;
+  margin-top: 0px;
+} */
+
+@media (min-width: 1400px) and (max-width: 1500px){
+  .my-modal {
+    width: 100% !important;   /* Occupy the 90% of the screen width */
+    /* max-width: 90vw !important; */
+    background-color: cyan !important;
+} 
+  label {
+        width: 660px;
+        position: relative !important;
+        left: 23px !important;
+    }
+.slope{
+  position: relative;
+  right: 52px;
+}
+    .checbox{
+      background-color: cyan;
+      width: 639px;
+    }
+    .auctionInp{
+        background-color: red !important;
+        position: relative !important;
+        left: 23px !important;
+        width: 290px !important;
+
+    }
+
+    .selectInp{
+      background-color: red !important;
+        position: relative !important;
+        left: 23px !important;
+        width: 150px !important;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .modal-content {
+    padding-top: 30px !important;
+    background-color: cyan !important;
+    width: 1100px !important;
+    max-width: var(--bs-modal-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+  label {
+    width: 660px;
+    position: relative !important;
+    left: 23px !important;
+}
+
+.checbox{
+  background-color: pink;
+  width: 639px;
+}
+.auctionInp{
+    background-color: purple !important;
+    position: relative !important;
+    left: 23px !important;
+    width: 290px !important;
+
+}
+
+.selectInp{
+  background-color: purple !important;
+    position: relative !important;
+    left: 23px !important;
+    width: 150px !important;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .modal-content {
+    padding-top: 30px !important;
+    background-color: cyan !important;
+    /* width: 1000px !important; */
+    max-width: var(--bs-modal-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+.slope{
+  position: relative;
+  right: 90px;
+}
+.modal-lg, .modal-xl {
+  --bs-modal-width: 940px !important;
+}
+  /* .modal-content {
+    padding-top: 30px !important;
+    background-color: purple !important;
+    width: 1200px !important;
+} */
+  label {
+    width: 660px;
+    position: relative !important;
+    left: 23px !important;
+}
+
+.checbox{
+  background-color: yellow;
+  width: 639px;
+}
+.auctionInp{
+    background-color: orange !important;
+    position: relative !important;
+    left: 23px !important;
+    width: 190px !important;
+
+}
+
+.selectInp{
+  background-color: orange !important;
+    position: relative !important;
+    left: 23px !important;
+    width: 115px !important;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .modal-content {
+    padding-top: 30px !important;
+    background-color: cyan !important;
+    /* width: 1000px !important; */
+    max-width: var(--bs-modal-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+.slope{
+  position: relative;
+  right: 172px;
+}
+.desc {
+  background-color: red !important;
+  width: 408px !important;
+  position: absolute !important;
+  right:1px;
+
+}
+.modal-lg, .modal-xl {
+  --bs-modal-width: 709px !important;
+}
+  /* .modal-content {
+    padding-top: 30px !important;
+    background-color: purple !important;
+    width: 1200px !important;
+} */
+  label {
+    width: 660px;
+    position: relative !important;
+    left: 23px !important;
+}
+
+.checbox{
+  background-color: yellow;
+  width: 639px;
+}
+.auctionInp{
+    background-color: orange !important;
+    position: relative !important;
+    left: 23px !important;
+    width: 190px !important;
+
+}
+
+.selectInp{
+  background-color: orange !important;
+    position: relative !important;
+    left: 23px !important;
+    width: 113px !important;
+}
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .modal-content {
+    padding-top: 30px !important;
+    background-color: cyan !important;
+    /* width: 1000px !important; */
+    max-width: var(--bs-modal-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+.slope{
+  position: relative;
+  right: 172px;
+}
+.desc {
+  background-color: red !important;
+  width: 408px !important;
+  position: absolute !important;
+  right:1px;
+
+}
+.modal-lg, .modal-xl {
+  --bs-modal-width: 709px !important;
+}
+  /* .modal-content {
+    padding-top: 30px !important;
+    background-color: purple !important;
+    width: 1200px !important;
+} */
+  label {
+    width: 660px;
+    position: relative !important;
+    left: 23px !important;
+}
+
+.checbox{
+  background-color: yellow;
+  width: 639px;
+}
+.auctionInp{
+    background-color: orange !important;
+    position: relative !important;
+    left: 23px !important;
+    width: 190px !important;
+
+}
+
+.selectInp{
+  background-color: orange !important;
+    position: relative !important;
+    left: 23px !important;
+    width: 114px !important;
+}
+}
+
+
+@media (min-width: 500px) and (max-width: 575.98px) {
+  .modal-content {
+    padding-top: 30px !important;
+    background-color: purple !important;
+}
+.modal-body  {
+  max-width: var(--bs-modal-width) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.slope{
+  position: relative;
+  right: 52px;
+}
+
+label {
+  width: 660px;
+  position: relative !important;
+  left: 23px !important;
+}
+
+.checbox{
+background-color: cyan;
+width: 420px;
+position: absolute !important;
+left: 23px !important;
+}
+.auctionInp{
+  background-color: orange !important;
+  /* position: relative !important;
+  left: 23px !important; */
+  width: 370px !important;
+
+}
+
+.selectInp{
+background-color:  orange!important;
+  /* position: relative !important;
+  left: 23px !important; */
+  width: 150px !important;
+}
+}
+
+@media (min-width: 300px) and (max-width: 499.98px) {
+  .modal-content {
+    padding-top: 30px !important;
+    /* background-color: cyan !important; */
+    width: 360px !important;
+}
+
+.slope{
+  position: relative;
+  right: 52px;
+}
+/* label {
+  width: 660px;
+  position: relative !important;
+  left: 23px !important;
+} */
+
+.checbox{
+/* background-color: cyan; */
+width: 310px;
+}
+.auctionInp{
+  /* background-color: orange !important; */
+  /* position: relative !important;
+  left: 23px !important; */
+  width: 300px !important;
+
+}
+
+.selectInp{
+/* background-color:  orange!important; */
+  /* position: relative !important;
+  left: 23px !important; */
+  width: 300px !important;
+}
+
+  }
+  
+
+
+
+
+
+  

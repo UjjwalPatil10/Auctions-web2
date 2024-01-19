@@ -609,7 +609,7 @@ const handleUser = async (user) => {
                       <AuctionFormikControl
                         className={`form-control view-dateInp mt-2 ${isFocused ? "focused" : ""
                           }`}
-                        control="input"
+                        control="date"
                         type="text"
                         label="viewing date"
                         name="viewingDate"

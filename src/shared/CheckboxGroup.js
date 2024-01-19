@@ -45,7 +45,8 @@ function CheckboxGroup(props) {
   const { label, name, options, ...rest } = props;
 
   return (
-    <div className=''>
+    <div className='d-flex slope'>
+      
       <label>{label}</label>
       <Field name={name}>
         {({ field, form }) => {

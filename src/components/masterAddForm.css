@@ -73,12 +73,7 @@
     box-sizing: border-box !important;
   }
 
-  .check{
-    /* background-color: cyan; */
-    /* width: 870px; */
-    /* position: absolute;
-    right:60px; */
-}
+
 .des{
   /* background-color: cyan !important; */
   width: 324px !important;
@@ -134,12 +129,7 @@
       box-sizing: border-box !important;
     }
   
-    .check{
-      /* background-color: cyan; */
-      /* width: 870px; */
-      /* position: absolute;
-      right:60px; */
-  }
+
   .des{
     /* background-color: cyan !important; */
     width: 324px !important;
@@ -197,12 +187,6 @@
         box-sizing: border-box !important;
       }
     
-      .check{
-        /* background-color: cyan; */
-        /* width: 870px; */
-        /* position: absolute;
-        right:60px; */
-    }
     .des{
       /* background-color: cyan !important; */
       width: 324px !important;
@@ -257,9 +241,7 @@
 
 
  
-       label {
-        /* background-color: green !important; */
-      }
+      
      
         }
 
@@ -307,7 +289,7 @@
       .nameInp{
         /* background-color: pink !important; */
     
-        width: 300px !important;
+        width: 272px !important;
         padding: 8px !important;
         border: 1px solid rgb(204, 204, 204) !important;
         border-radius: 4px !important;

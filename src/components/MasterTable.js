@@ -1225,7 +1225,9 @@ export default function MasterTable() {
       setLoading(false); // Set loading to false if there's an error
     }
   };
-
+  useEffect(() => {
+    getData();
+  }, []);
   // const getData = async () => {
   //   await axios
   //     //   .get("http://localhost:8080/api/v1/auction/all")
@@ -1246,9 +1248,7 @@ export default function MasterTable() {
   //     });
   // };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  
 
   const emptyRows = [];
 

@@ -4,7 +4,7 @@ import AuctionTextError from './AuctionTextError'
 
 function AuctionInput(props) {
     const { label, name, ...rest } = props
-
+// console.log("name:",typeof(name))
 const inputStyles = {
       width: '100%',  
       padding: '10px',
