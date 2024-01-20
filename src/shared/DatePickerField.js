@@ -12,7 +12,7 @@ const DatePickerField = ({ label, ...props }) => {
     const formattedDate = dayjs(date).format('YYYY-MM-DD');
     helpers.setValue(formattedDate);
   };
-  console.log("date:" ,typeof(field.value))
+  // console.log("date:" ,typeof(field.value))
 
   return (
     <div>
@@ -32,36 +32,35 @@ const DatePickerField = ({ label, ...props }) => {
 export default DatePickerField;
 
 // ===================================================================================
-
 // import React from "react";
-// import DateView from "react-datepicker";
+// import { useField } from "formik";
+// import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
-// import { ErrorMessage, Field } from "formik";
-// import TextError from "./AuctionTextError";
 
-// const DatePickerField = (props) => {
-//   const { label, name, ...rest } = props;
+// const DatePickerField = ({ label, ...props }) => {
+//   const [field, meta, helpers] = useField(props);
+//   const handleDateChange = (date) => {
+//     helpers.setValue(date);
+//     console.log("dates",date);
+//   };
 
 //   return (
-//     <div className="">
-//       <label htmlFor={name}>{label}</label>
-//       <Field name={name}>
-//         {({ field, form }) => {
-//           const { setFieldValue, value } = field;
-//           return (
-//             <DateView
-//               id={name}
-//               {...rest}
-//               selected={value}
-//               onChange={(val) => {
-//                 setFieldValue(name, val); // Ensure setFieldValue is called with the correct arguments
-//                 form.setFieldValue(name, val); // Additionally, try using form.setFieldValue
-//               }}
-//             />
-//           );
-//         }}
-//       </Field>
-//       <ErrorMessage name={name} component={TextError} />
+//     <div>
+//       <label htmlFor={props.id || props.name}>{label}</label>
+//       <DatePicker
+//         {...field}
+//         {...props}
+//         selected={field.value}
+//         onChange={handleDateChange}
+//         showTimeSelect
+//         dateFormat="yyyy-MM-dd hh:mm aa"
+//         timeFormat="hh:mm aa"
+//         timeCaption="Time"
+//         timeZone="Asia/Kolkata"
+//       />
+//       {meta.touched && meta.error && (
+//         <div style={{ color: "red" }}>{meta.error}</div>
+//       )}
 //     </div>
 //   );
 // };

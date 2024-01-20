@@ -1,6 +1,4 @@
-
-
-import React, {useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Formik, Form, useFormik } from "formik";
 import * as Yup from "yup";
 import AuctionFormikControl from "../shared/AuctionFormikControl";
@@ -15,23 +13,24 @@ import { GridCloseIcon } from "@mui/x-data-grid";
 import UserContext from "./UserContext";
 import UserService from "./UserService";
 import { Nav } from "react-bootstrap";
-import "../components/auctionForm.css"
+import "../components/auctionForm.css";
+import { format } from "date-fns";
 function UserForm() {
-
-  const { open, operation, initialUser, handleClose, filteredRows, getData, setData } =
-    useContext(UserContext);
+  const {
+    open,
+    operation,
+    initialUser,
+    handleClose,
+    filteredRows,
+    getData,
+    setData,
+  } = useContext(UserContext);
   //   const [data, setData] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
   const [isFocused, setIsFocused] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    // Cleanup function to reset loading state when the component unmounts
-    return () => {
-      setLoading(false);
-    };
-  }, []);
+
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -68,16 +67,11 @@ function UserForm() {
     { key: "Option #3", value: "3" },
   ];
 
- 
-
   const checkboxOptions = [
     { key: "bulkbids", value: "bulkbid" },
     { key: "proxybids", value: "proxybid" },
     { key: "popcornbids", value: "popcornbid" },
-
-
   ];
-
 
   // const checkboxOptions1 = [
   //   { key: "Hide Bulk Bid", value: "hide" },
@@ -141,7 +135,7 @@ function UserForm() {
     // viewTime: Yup.string()
     // .matches(/^(0[1-9]|1[0-2]):[0-5][0-9] [APMapm]{2}$/, 'Invalid time format (hh:mm A)')
     // .required('Required'),
-  
+
     startDate: Yup.string().required("Required"),
     startTime: Yup.string().required("Required"),
     endDate: Yup.string().required("Required"),
@@ -161,7 +155,6 @@ function UserForm() {
     checkboxOption: Yup.array().required("Required"),
     // checkbox1:Yup.array().required("Required")
   });
-
 
   // const onSubmit = (values, submitProps) => {
   //   // setLoading(true); // Set loading to true when the form is submitted
@@ -197,217 +190,225 @@ function UserForm() {
 
   //     update,add users logic
 
-//   const handleUser = async (user) => {
-//     console.log("Handle..", user);
-//     console.log("User ID:", initialUser);
-//     if (operation === "edit") {
-//     try {
-//         const userId = initialUser?.id
-//         const response = await axios.put(`http://localhost:4000/auctions/${userId}`,user);
-//         // const response = await UserService.updateUser(initialUser?.id, user);
-//         // Note: Use initialUser?._id instead of undefined userId
-//         console.log("Res:", response?.data);
-//         handleClose();
-//         setData((prevUsers) => {
-//           const updatedUsers = prevUsers.map((u) =>
-//             u.id === initialUser.id ? { ...u, ...user } : u
-//           );
-//           return updatedUsers;
-//         });
-//         alert("User Updated...");
-//       } catch (err) {
-//         console.error(err);
-//         alert("User not Updated");
-//       }
-//     }
-//     else {
-//       // Existing code for creating a new user
-// const formatedValues = {
-//   ...user,
-//   bulkbid:user.checkboxOption.includes("bulkbid") ? "yes" : "no",
-//   proxybid:user.checkboxOption.includes("proxybid") ? "yes" : "no",
-//   popcornbid:user.checkboxOption.includes("popcornbid") ? "yes" : "no"
-// }
-// console.log("values:",formatedValues)
+  //   const handleUser = async (user) => {
+  //     console.log("Handle..", user);
+  //     console.log("User ID:", initialUser);
+  //     if (operation === "edit") {
+  //     try {
+  //         const userId = initialUser?.id
+  //         const response = await axios.put(`http://localhost:4000/auctions/${userId}`,user);
+  //         // const response = await UserService.updateUser(initialUser?.id, user);
+  //         // Note: Use initialUser?._id instead of undefined userId
+  //         console.log("Res:", response?.data);
+  //         handleClose();
+  //         setData((prevUsers) => {
+  //           const updatedUsers = prevUsers.map((u) =>
+  //             u.id === initialUser.id ? { ...u, ...user } : u
+  //           );
+  //           return updatedUsers;
+  //         });
+  //         alert("User Updated...");
+  //       } catch (err) {
+  //         console.error(err);
+  //         alert("User not Updated");
+  //       }
+  //     }
+  //     else {
+  //       // Existing code for creating a new user
+  // const formatedValues = {
+  //   ...user,
+  //   bulkbid:user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+  //   proxybid:user.checkboxOption.includes("proxybid") ? "yes" : "no",
+  //   popcornbid:user.checkboxOption.includes("popcornbid") ? "yes" : "no"
+  // }
+  // console.log("values:",formatedValues)
 
-// setData(formatedValues)
+  // setData(formatedValues)
 
-//       // UserService.createUser(formatedValues)
+  //       // UserService.createUser(formatedValues)
 
-//          await  axios.post("http://localhost:4000/auctions",formatedValues)
-//         .then((response) => {
-//           handleClose();
-//           console.log("datas:",response?.data)
-//           getData();
-//         //   alert("User Created Successfully");
-//         toast.success("User Created Successfully")
-//         })
-//         .catch((err) => {
-//           console.error(err);
-//           alert("User not created...");
-//         });
-//     }
-//   };
+  //          await  axios.post("http://localhost:4000/auctions",formatedValues)
+  //         .then((response) => {
+  //           handleClose();
+  //           console.log("datas:",response?.data)
+  //           getData();
+  //         //   alert("User Created Successfully");
+  //         toast.success("User Created Successfully")
+  //         })
+  //         .catch((err) => {
+  //           console.error(err);
+  //           alert("User not created...");
+  //         });
+  //     }
+  //   };
 
-const handleUser = async (user) => {
-  console.log("Handle..", user);
-  console.log("User ID:", initialUser);
+  const handleUser = async (user) => {
+    console.log("Handle..", user);
+    console.log("User ID:", initialUser);
 
-  try {
-    if (operation === "edit") {
-      const userId = initialUser?.id;
-      const updatedUser = {
-        ...user,
-        bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
-        proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
-        popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
-      };
-      const response = await axios.put(`http://localhost:4000/auctions/${userId}`, updatedUser);
-      console.log("updatedUser:",response?.data)
+    try {
+      if (operation === "edit") {
+        const userId = initialUser?.id;
+        setLoading(true);
 
-      const UpdatedUsers = response?.data
-      // console.log("Res:", response?.data);
-      // handleClose();
-
-      // Assuming your UI is connected to the setData function, update it accordingly
-      // setData(response?.data)
-      setData((prevUsers) => {
-        const updatedUsers = prevUsers.map((u) =>
-          u.id === initialUser.id ? { ...u, ...user } : u
+        const updatedUser = {
+          ...user,
+          bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+          proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
+          popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
+        };
+        const response = await axios.put(
+          `http://localhost:4000/auctions/${userId}`,
+          { ...updatedUser }
         );
-        return updatedUsers;
-      });
+        console.log("updatedUser:", response?.data);
 
-      alert("User Updated...");                                                                                                               
-      handleClose()
-    } else {
-      // Existing code for creating a new user
-      const formatedValues = {
-        ...user,
-        bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
-        proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
-        popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
-      };
-      console.log("values:", formatedValues);
+        const UpdatedUsers = response?.data;
+        // console.log("Res:", response?.data);
+        // handleClose();
 
-      const response = await axios.post("http://localhost:4000/auctions", formatedValues);
-      handleClose();
+        // Assuming your UI is connected to the setData function, update it accordingly
+        setData(UpdatedUsers)
+        // setData((prevUsers) => {
+        //   const updatedUsers = prevUsers.map((u) =>
+        //     u.id === initialUser.id ? { ...u, ...user } : u
+        //   );
+        //   return updatedUsers;
+        // });
 
-      // Assuming your UI is connected to the setData function, update it accordingly
-      // setData((prevData) => [...prevData, response.data]);
-      getData()
-
-      toast.success("User Created Successfully");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("Error occurred while handling the user.");
-  }
-};
-
-
-// const handleUser = async (user) => {
-//   console.log("Handle..", user);
-//   console.log("User ID:", initialUser);
-
-//   try {
-//     // Set loading to true when the form is submitted
-//     setLoading(true);
-
-//     if (operation === "edit") {
-//       const userId = initialUser?.id;
-//       const updatedUser = {
-//         ...user,
-//         bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
-//         proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
-//         popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
-//       };
-//       const response = await axios.put(`http://localhost:4000/auctions/${userId}`, updatedUser);
-//       console.log("updatedUser:", response?.data);
-//       handleClose();
-//       setData((prevUsers) => {
-//         const updatedUsers = prevUsers.map((u) =>
-//           u.id === initialUser.id ? { ...u, ...user } : u
-//         );
-//         return updatedUsers;
-//       });
-//       alert("User Updated...");
-//     } else {
-//       const formatedValues = {
-//         ...user,
-//         bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
-//         proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
-//         popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
-//       };
-//       console.log("values:", formatedValues);
-//       const response = await axios.post("http://localhost:4000/auctions", formatedValues);
-//       handleClose();
-//       setData((prevData) => [...prevData, response.data]);
-//       toast.success("User Created Successfully");
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     alert("Error occurred while handling the user.");
-//   } finally {
-//     // Set loading to false after the form submission is complete
-//     setLoading(false);
-//   }
-// };
-
-
-
-
-
-// const handleUser = async (user) => {
-//   console.log("Handle..", user);
-//   console.log("User ID:", initialUser);
-
-//   try {
-//     if (operation === "edit") {
-//       const userId = initialUser?.id;
-//       const response = await axios.put(`http://localhost:4000/auctions/${userId}`, user);
-//       console.log("Res:", response?.data);
-//       handleClose();
-
-//       // Assuming your UI is connected to the setData function, update it accordingly
-//       setData((prevUsers) => {
-//         const updatedUsers = prevUsers.map((u) =>
-//           u.id === initialUser.id ? { ...u, ...user } : u
-//         );
-//         return updatedUsers;
-//       });
-
-//       alert("User Updated...");
-//     } else {
-//       // Existing code for creating a new user
-//       const formatedValues = {
-//         ...user,
-//         bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
-//         proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
-//         popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
-//       };
-//       console.log("values:", formatedValues);
-
-//       const response = await axios.post("http://localhost:4000/auctions", formatedValues);
-//       handleClose();
+        alert("User Updated...");
+        handleClose();
+        
+      }
       
-//       // Assuming your UI is connected to the setData function, update it accordingly
-//       setData((prevData) => [...prevData, response.data]);
+      
+      else {
+        // Existing code for creating a new user
+const formatedValues = {
+          ...user,
+          bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+          proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
+          popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
+        };
+ 
+        console.log("values:", formatedValues);
 
-//       toast.success("User Created Successfully");
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     alert("Error occurred while handling the user.");
-//   }
-// };
+        const response = await axios.post(
+          "http://localhost:4000/auctions",
+          {...formatedValues}
+        );
+        handleClose();
 
-// const formik = useFormik({
-//   initialValues: initialUser,
-//   validationSchema: validationSchema,
-//   onSubmit: (data) => handleUser(data),
-// });
+        // Assuming your UI is connected to the setData function, update it accordingly
+        // setData((prevData) => [...prevData, response.data]);
+        getData();
 
+        toast.success("User Created Successfully");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error occurred while handling the user.");
+    }
+    
+  };
+
+  // const handleUser = async (user) => {
+  //   console.log("Handle..", user);
+  //   console.log("User ID:", initialUser);
+
+  //   try {
+  //     // Set loading to true when the form is submitted
+  //     setLoading(true);
+
+  //     if (operation === "edit") {
+  //       const userId = initialUser?.id;
+  //       const updatedUser = {
+  //         ...user,
+  //         bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+  //         proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
+  //         popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
+  //       };
+  //       const response = await axios.put(`http://localhost:4000/auctions/${userId}`, updatedUser);
+  //       console.log("updatedUser:", response?.data);
+  //       handleClose();
+  //       setData((prevUsers) => {
+  //         const updatedUsers = prevUsers.map((u) =>
+  //           u.id === initialUser.id ? { ...u, ...user } : u
+  //         );
+  //         return updatedUsers;
+  //       });
+  //       alert("User Updated...");
+  //     } else {
+  //       const formatedValues = {
+  //         ...user,
+  //         bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+  //         proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
+  //         popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
+  //       };
+  //       console.log("values:", formatedValues);
+  //       const response = await axios.post("http://localhost:4000/auctions", formatedValues);
+  //       handleClose();
+  //       setData((prevData) => [...prevData, response.data]);
+  //       toast.success("User Created Successfully");
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Error occurred while handling the user.");
+  //   } finally {
+  //     // Set loading to false after the form submission is complete
+  //     setLoading(false);
+  //   }
+  // };
+
+  // const handleUser = async (user) => {
+  //   console.log("Handle..", user);
+  //   console.log("User ID:", initialUser);
+
+  //   try {
+  //     if (operation === "edit") {
+  //       const userId = initialUser?.id;
+  //       const response = await axios.put(`http://localhost:4000/auctions/${userId}`, user);
+  //       console.log("Res:", response?.data);
+  //       handleClose();
+
+  //       // Assuming your UI is connected to the setData function, update it accordingly
+  //       setData((prevUsers) => {
+  //         const updatedUsers = prevUsers.map((u) =>
+  //           u.id === initialUser.id ? { ...u, ...user } : u
+  //         );
+  //         return updatedUsers;
+  //       });
+
+  //       alert("User Updated...");
+  //     } else {
+  //       // Existing code for creating a new user
+  //       const formatedValues = {
+  //         ...user,
+  //         bulkbid: user.checkboxOption.includes("bulkbid") ? "yes" : "no",
+  //         proxybid: user.checkboxOption.includes("proxybid") ? "yes" : "no",
+  //         popcornbid: user.checkboxOption.includes("popcornbid") ? "yes" : "no",
+  //       };
+  //       console.log("values:", formatedValues);
+
+  //       const response = await axios.post("http://localhost:4000/auctions", formatedValues);
+  //       handleClose();
+
+  //       // Assuming your UI is connected to the setData function, update it accordingly
+  //       setData((prevData) => [...prevData, response.data]);
+
+  //       toast.success("User Created Successfully");
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Error occurred while handling the user.");
+  //   }
+  // };
+
+  // const formik = useFormik({
+  //   initialValues: initialUser,
+  //   validationSchema: validationSchema,
+  //   onSubmit: (data) => handleUser(data),
+  // });
 
   if (loading) {
     return <AuctionLoadAnimation />;
@@ -424,9 +425,7 @@ const handleUser = async (user) => {
         {(formik) => {
           return (
             <div className="container-fluid mt-2 ">
-
               <Form className="" autoComplete="off">
-            
                 {/* 1st row  */}
                 <div className="row mt-2">
                   <div className="col-md-4 col-sm-6">
@@ -434,8 +433,7 @@ const handleUser = async (user) => {
                       <AuctionFormikControl
                         className={`auctionInp form-control mt-2 form-control 
                         
-                        ${isFocused ? "focused" : ""
-                          }`}
+                        ${isFocused ? "focused" : ""}`}
                         control="input"
                         type="text"
                         label="Auction Name"
@@ -450,8 +448,9 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp mt-2 ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp mt-2 ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="select"
                         type="text"
                         label="Auction Inventory"
@@ -466,8 +465,9 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp form-control  mt-2 ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp form-control  mt-2 ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="date"
                         type="text"
                         label="viewing date"
@@ -485,9 +485,10 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp mt-2  ${isFocused ? "focused" : ""
-                          }`}
-                        control="time"
+                        className={`auctionInp mt-2  ${
+                          isFocused ? "focused" : ""
+                        }`}
+                        control="input"
                         type="text"
                         label="Viewing Time"
                         name="viewTime"
@@ -500,8 +501,9 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp mt-2  ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp mt-2  ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="date"
                         type="text"
                         label="Start Date"
@@ -515,8 +517,9 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp form-control mt-2 startTimeInp ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp form-control mt-2 startTimeInp ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="input"
                         type="text"
                         label="Start Time"
@@ -534,8 +537,9 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp form-control mt-2  ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp form-control mt-2  ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="date"
                         type="text"
                         label="End Date"
@@ -549,23 +553,23 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp form-control mt-2  ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp form-control mt-2  ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="input"
                         type="text"
                         label="End Time"
                         name="endTime"
                       />
-
-                 
                     </div>
                   </div>
 
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp form-control mt-2  ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp form-control mt-2  ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="input"
                         type="text"
                         label="Default Bid Increment By"
@@ -595,14 +599,14 @@ const handleUser = async (user) => {
                   </div>
                 </div>
 
-
                 {/* input field  */}
                 <div className="row mt-2">
                   <div className="col-md-4">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp form-control mt-2  ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp form-control mt-2  ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="date"
                         type="text"
                         label="Auction Result Date"
@@ -626,10 +630,12 @@ const handleUser = async (user) => {
                   <div className="col-md-8 mt-4">
                     <div className="form-group">
                       <div className="row">
-
                         <div className="col">
                           <div className="checkbox">
-                            <label for="checkbox1" className="form-check-label checbox">
+                            <label
+                              for="checkbox1"
+                              className="form-check-label checbox"
+                            >
                               <AuctionFormikControl
                                 control="checkbox"
                                 name="checkboxOption"
@@ -648,8 +654,6 @@ const handleUser = async (user) => {
                                   )} */}
                           </div>
                         </div>
-
-
                       </div>
                     </div>
                   </div>
@@ -662,8 +666,9 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp mt-2 ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp mt-2 ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="select"
                         type="text"
                         label="Extend Deadline within Type"
@@ -679,8 +684,9 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp form-control mt-2  ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp form-control mt-2  ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="input"
                         type="text"
                         label="Extend Deadline within Value"
@@ -695,8 +701,9 @@ const handleUser = async (user) => {
                   <div className="col-md-4 col-sm-6">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`auctionInp form-control mt-2 BidInp ${isFocused ? "focused" : ""
-                          }`}
+                        className={`auctionInp form-control mt-2 BidInp ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="input"
                         type="text"
                         label="No of Times Bid Extend"
@@ -715,8 +722,9 @@ const handleUser = async (user) => {
                   <div className="col-md-2">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`selectInp mt-3 ${isFocused ? "focused" : ""
-                          }`}
+                        className={`selectInp mt-3 ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="select"
                         type="text"
                         label="Auction Mode"
@@ -731,8 +739,9 @@ const handleUser = async (user) => {
                   <div className="col-md-2">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`selectInp mt-3  ${isFocused ? "focused" : ""
-                          }`}
+                        className={`selectInp mt-3  ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="select"
                         type="text"
                         label="Record Status"
@@ -747,8 +756,9 @@ const handleUser = async (user) => {
                   <div className="col-md-8 ">
                     <div className="form-group">
                       <AuctionFormikControl
-                        className={`desc form-control mt-3  ${isFocused ? "focused" : ""
-                          }`}
+                        className={`desc form-control mt-3  ${
+                          isFocused ? "focused" : ""
+                        }`}
                         control="textarea"
                         type="text"
                         label="Description"
@@ -764,9 +774,7 @@ const handleUser = async (user) => {
                 <hr />
 
                 <div className="row d-flex justify-content-center">
-
                   <div className="col-md-2 d-flex justify-content-between">
-
                     <button
                       type="submit"
                       className="btn btn-outline-primary"
@@ -774,25 +782,16 @@ const handleUser = async (user) => {
                     >
                       {/*loading ? <>Loading..</> : <></>*/}
                       {operation === "edit" ? "Update" : "Creates"}
-
                     </button>
-
-
-
                   </div>
-
                 </div>
               </Form>
-
             </div>
-            
           );
         }}
       </Formik>
 
-      <div>
-        {/* <ToastContainer /> */}
-      </div>
+      <div>{/* <ToastContainer /> */}</div>
     </>
   );
 }

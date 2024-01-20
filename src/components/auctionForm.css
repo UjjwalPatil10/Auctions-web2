@@ -18,33 +18,33 @@
   .my-modal {
     width: 100% !important;   /* Occupy the 90% of the screen width */
     /* max-width: 90vw !important; */
-    background-color: cyan !important;
+    /* background-color: cyan !important; */
 } 
   label {
         width: 660px;
         position: relative !important;
-        left: 23px !important;
+        /* left: 23px !important; */
     }
-.slope{
+/* .slope{
   position: relative;
   right: 52px;
-}
+} */
     .checbox{
-      background-color: cyan;
+      /* background-color: cyan; */
       width: 639px;
     }
     .auctionInp{
-        background-color: red !important;
+        /* background-color: red !important; */
         position: relative !important;
-        left: 23px !important;
+        /* left: 23px !important; */
         width: 290px !important;
 
     }
 
     .selectInp{
-      background-color: red !important;
+      /* background-color: red !important; */
         position: relative !important;
-        left: 23px !important;
+        /* left: 23px !important; */
         width: 150px !important;
     }
 }
@@ -62,7 +62,7 @@
   label {
     width: 660px;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
 }
 
 .checbox{
@@ -72,7 +72,7 @@
 .auctionInp{
     background-color: purple !important;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
     width: 290px !important;
 
 }
@@ -80,7 +80,7 @@
 .selectInp{
   background-color: purple !important;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
     width: 150px !important;
 }
 }
@@ -109,7 +109,7 @@
   label {
     width: 660px;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
 }
 
 .checbox{
@@ -119,7 +119,7 @@
 .auctionInp{
     background-color: orange !important;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
     width: 190px !important;
 
 }
@@ -127,7 +127,7 @@
 .selectInp{
   background-color: orange !important;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
     width: 115px !important;
 }
 }
@@ -143,7 +143,7 @@
 }
 .slope{
   position: relative;
-  right: 172px;
+  right: 150px;
 }
 .desc {
   background-color: red !important;
@@ -163,7 +163,7 @@
   label {
     width: 660px;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
 }
 
 .checbox{
@@ -173,7 +173,7 @@
 .auctionInp{
     background-color: orange !important;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
     width: 190px !important;
 
 }
@@ -181,7 +181,7 @@
 .selectInp{
   background-color: orange !important;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
     width: 113px !important;
 }
 }
@@ -217,7 +217,7 @@
   label {
     width: 660px;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
 }
 
 .checbox{
@@ -227,7 +227,7 @@
 .auctionInp{
     background-color: orange !important;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
     width: 190px !important;
 
 }
@@ -235,7 +235,7 @@
 .selectInp{
   background-color: orange !important;
     position: relative !important;
-    left: 23px !important;
+    /* left: 23px !important; */
     width: 114px !important;
 }
 }
@@ -260,7 +260,7 @@
 label {
   width: 660px;
   position: relative !important;
-  left: 23px !important;
+  /* left: 23px !important; */
 }
 
 .checbox{

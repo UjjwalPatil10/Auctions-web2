@@ -37,21 +37,13 @@ import Modal from "react-bootstrap/Modal";
 
 import "../components/addEditUser.css"
 import { Button } from "react-bootstrap";
+import AuctionView from "../components/AuctionView";
 const AddEditUser = () => {
   //Dialog is in material
   // const { open, handleModalClose, operation } = useContext(UserContext);
-  const { show, handleClose, operation } = useContext(UserContext);
+  const { show, handleClose, operation ,view} = useContext(UserContext);
   return (
-    // <Dialog open={open} onClose={handleModalClose} className="css-bdhsul-MuiTypography-root-MuiDialogTitle-root" >
-    //   <DialogTitle>
-    //     {operation == "edit" ? "Edit User" : "Add User"}
-    //   </DialogTitle>
-    //   <DialogContent>
-    //     <UserForm />
-    //   </DialogContent>
-    // </Dialog>
-
-    // ===============================================
+  
     <Modal
       show={show}
       onHide={handleClose}
@@ -62,34 +54,15 @@ const AddEditUser = () => {
       <Modal.Header closeButton>
         <Modal.Title>
           {operation == "edit" ? "Edit User" : "Add User"}
-
+          {/* {(view == "view") ? (<AuctionView/>) : (null)} */}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body >
-        <UserForm />
-        {/* <div className="yup">
-          <NavLink to="/masterModalForm"
-
-            className="border-0 bg-white text-black  text-decoration-none m-3 hover-effect" style={activeState} >
-
-
-            Master
-          </NavLink>
-          <NavLink to="/details" className="border-0 bg-white text-black text-decoration-none m-3 hover-effect" style={activeState}  >
-            Details
-          </NavLink>
-          <NavLink to="/stockfile" className="border-0 bg-white text-black text-decoration-none m-3 hover-effect" style={activeState} >
-            Stock File Upload
-          </NavLink>
-
-        </div> */}
+       
+      <UserForm/>
+ 
         <div>
 
-          {/* <Routes>
-            <Route path="/masterModalForm" element={<MasterModalForm />} />
-            <Route path="/details" element={<Details />} />
-            <Route path="/stockfile" element={<StockFile />} />
-          </Routes> */}
 
         </div>
       </Modal.Body>
