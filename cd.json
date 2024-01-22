@@ -74,12 +74,40 @@
       "bulkbid": "yes",
       "proxybid": "no",
       "popcornbid": "yes",
-      "description": "shree ram jay ram jay jay ram",
+      "description": "shree ram jay ram jay jay ram ram",
       "checkboxOption": [
         "bulkbid",
         "popcornbid"
       ],
       "noofBids": "8"
+    },
+    {
+      "id": 4,
+      "auctionName": "shree Ram Ram",
+      "auctionInventory": "certificate",
+      "viewingDate": "2024-01-02",
+      "viewTime": "s",
+      "startDate": "2024-01-31",
+      "startTime": "2",
+      "endDate": "2024-01-03",
+      "endTime": "2",
+      "defaultBid": "2",
+      "auctionResult": "2024-01-02",
+      "extendDeadlineType": "minutes",
+      "extendDeadlineValue": "2",
+      "noofBid": "",
+      "auctionMode": "",
+      "recordStatus": "#2",
+      "bulkbid": "yes",
+      "proxybid": "yes",
+      "popcornbid": "yes",
+      "description": "Shree ram",
+      "checkboxOption": [
+        "bulkbid",
+        "proxybid",
+        "popcornbid"
+      ],
+      "noofBids": "2"
     }
   ]
 }

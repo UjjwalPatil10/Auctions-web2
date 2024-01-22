@@ -35,7 +35,7 @@ export default function MasterTable() {
   const [show, setShow] = useState(false);
 
   const [operation, setOperation] = useState("add");
-  const [view,setView] = useState("")
+  const [view,setView] = useState("view")
   const [loading, setLoading] = useState(true);
   const [initialUser, setInitialUser] = useState({
     auctionName: "",
@@ -88,7 +88,13 @@ export default function MasterTable() {
 
   };
 
-  
+  const handleView = (id,auctionData) => {
+    setOperation("view");
+    setInitialUser({ ...auctionData }); // Set the data for viewing
+    handleShow(true);
+    console.log(`View row with ID`,id);
+  };
+
   
 
   const handleDelete = (id) => {
@@ -96,12 +102,6 @@ export default function MasterTable() {
     //   console.log(`Delete row with ID ${id}`);
   };
 
-  const handleView = (id,auctionData) => {
-    setView("view");
-    setInitialUser({ ...auctionData }); // Set the data for viewing
-    handleShow(true);
-    console.log(`View row with ID`,id);
-  };
 
 
   const columns = [
@@ -529,17 +529,14 @@ export default function MasterTable() {
 
   const getData = async () => {
     try {
-      setLoading(true); // Set loading to true before making the request
       const response = await axios.get("http://localhost:4000/auctions");
       const rowsWithId = response.data.map((row, index) => ({
         ...row,
         // id: index + 1,
       }));
       setData(rowsWithId);
-      setLoading(false); // Set loading to false after successful data fetching
     } catch (err) {
       console.log(err);
-      setLoading(false); // Set loading to false if there's an error
     }
   };
   useEffect(() => {
@@ -586,7 +583,7 @@ export default function MasterTable() {
       auctionResult: "",
       extendDeadlineType: "",
       extendDeadlineValue: "",
-      noofBid: "",
+      noofBids: "",
       auctionMode: "",
       recordStatus: "",
       bulkbid: "",
@@ -716,6 +713,8 @@ export default function MasterTable() {
             view,
             initialUser,
             getData,
+            addUser,
+            data,
             setData
           }}
         >

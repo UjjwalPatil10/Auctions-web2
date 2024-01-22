@@ -14,9 +14,13 @@ import Header from "../components/Header"
 import MasterModalForm from "../components/Modal/MasterModalForm";
 import Details from "../components/Modal/Details";
 import StockFile from "../components/Modal/StockFile";
+import AddAuction from "../components/AddAuction";
+import { useContext } from "react";
+import UserContext from "../components/UserContext";
 // import MasterEditForm from "../components/auction-module/MasterEditForm";
 
 const Routes = () => {
+  
     const { token } = useAuth();
     // Route configurations go here
 
@@ -38,6 +42,10 @@ const Routes = () => {
         {
             path:"/masterTableForm",
             element: <MasterTable />
+        },
+        {
+            path:"/addAuction",
+            element: <AddAuction />
         },
 
         {

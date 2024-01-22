@@ -1,27 +1,6 @@
-// import React, { useContext } from "react";
-// import Dialog from "@mui/material/Dialog";
-// import DialogTitle from "@mui/material/DialogTitle";
-// import DialogContent from "@mui/material/DialogContent";
-// import UserContext from "./UserContext";
-// import UserForm from "./UserForm";
-// import Modal from "react-modal"
-// import "../components/addEditUser.css"
-// const AddEditUser = () => {
-//   //Dialog is in material
-//   const { open,handleModalClose, operation } = useContext(UserContext);
-//   return (
-//     <Dialog open={open} onClose={handleModalClose} className="css-bdhsul-MuiTypography-root-MuiDialogTitle-root" >
-//       <DialogTitle>
-//         {operation == "edit" ? "Edit User" : "Add User"}
-//       </DialogTitle>
-//       <DialogContent>
-//         <UserForm />
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
 
-// export default AddEditUser;
+
+
 
 
 // ----------------------------------------------------------------
@@ -41,7 +20,7 @@ import AuctionView from "../components/AuctionView";
 const AddEditUser = () => {
   //Dialog is in material
   // const { open, handleModalClose, operation } = useContext(UserContext);
-  const { show, handleClose, operation ,view} = useContext(UserContext);
+  const { show, handleClose, operation ,view } = useContext(UserContext);
   return (
   
     <Modal
@@ -53,18 +32,19 @@ const AddEditUser = () => {
     >
       <Modal.Header closeButton>
         <Modal.Title>
-          {operation == "edit" ? "Edit User" : "Add User"}
+        {operation === "view" ? "Auction View Details" : ` ${operation === "edit" ? "Edit" : "Add"} User`}
+          {/* {operation == "view" ? "View Details" : "Add User"} */}
+          {/* {view == "view" ? "View details" : "Add User"} */}
           {/* {(view == "view") ? (<AuctionView/>) : (null)} */}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body >
-       
-      <UserForm/>
- 
-        <div>
-
-
-        </div>
+      {operation === "view" ? (
+    <AuctionView />
+  ) : (
+    <UserForm />
+  )}
+      
       </Modal.Body>
 
       {/* <Modal.Footer></Modal.Footer> */}
